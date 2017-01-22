@@ -31,13 +31,14 @@ MEDIA_ROOT = ''
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
 MEDIA_URL = ''
 
-# Absolute path to the directory that holds static files.
-# Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = os.environ.get('DJANGO_STATIC_ROOT', '')
-
 # URL that handles the static files served from STATIC_ROOT.
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
+
+# Absolute path to the directory that holds static files.
+# Example: "/home/media/media.lawrence.com/static/"
+DJANGO_STATIC_ROOT = os.path.join(BASE_DIR, STATIC_URL)
+STATIC_ROOT = os.environ.get('DJANGO_STATIC_ROOT', DJANGO_STATIC_ROOT)
 
 SESSION_ENGINE = 'redis_sessions.session'
 
@@ -97,6 +98,14 @@ WSGI_APPLICATION = 'ws4redis.django_runserver.application'
 
 # URL that distinguishes websocket connections from normal requests
 WEBSOCKET_URL = '/ws/'
+
+
+WS4REDIS_CONNECTION = {
+    'host': 'localhost',
+    'port': 6379,
+    'db': 0,
+    # 'password': 'verysecret',
+}
 
 # Set the number of seconds each message shall persited
 WS4REDIS_EXPIRE = 3600
