@@ -11,6 +11,7 @@ class BroadcastChatView(TemplateView):
     template_name = 'broadcast_chat.html'
 
     def get(self, request, *args, **kwargs):
+        print 'BroadcastChatView'
         welcome = RedisMessage('Hello everybody')  # create a welcome message to be sent to everybody
         RedisPublisher(facility='foobar', broadcast=True).publish_message(welcome)
         return super(BroadcastChatView, self).get(request, *args, **kwargs)

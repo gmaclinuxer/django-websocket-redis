@@ -32,6 +32,8 @@ jQuery(document).ready(function($) {
 	function receiveMessage(msg) {
 		billboard.append('<br/>' + msg);
 		billboard.scrollTop(billboard.scrollTop() + 25);
+        var cnt = parseInt($("#news").html()) + 1;
+        $("#news").html(cnt);
 	}
 });
 </script>
